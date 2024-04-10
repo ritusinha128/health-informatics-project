@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload an Image</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .upload-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .upload-header {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .upload-input {
+            margin-bottom: 20px;
+        }
+        .upload-preview {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            display: none; /* Hidden by default */
+        }
+        .upload-button {
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .upload-button:hover {
+            background: #0056b3;
+        }
+        .submit-button {
+            cursor: pointer;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            margin-top: 8px; /* Adjust the margin-top as needed */
+}
+        .submit-button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <div class="upload-header">Upload an Image</div>
+        
+        <!-- Form to submit an image -->
+        <form action="/skin" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" id="imageInput" class="upload-input" accept="image/*" onchange="previewImage()">
+            <img id="preview" src="#" alt="Image Preview" class="upload-preview" />
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function previewImage() {
+            var input = document.getElementById('imageInput');
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var preview = document.getElementById('preview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>

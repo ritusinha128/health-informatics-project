@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Image Recognition</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e9ecef;
+            font-family: Arial, sans-serif;
+        }
+        .form-column {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        .form-column h2 {
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+        .form-column select, .form-column input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-column">
+        <h2>Medical Image Recognition</h2>
+        <form action="/home" method="post">
+            <div>
+                <h4>Type of Image Upload</h4>
+                <select class="form-control" name="image_type">
+                    <option>Chest X-Ray</option>
+                    <option>Skin Lesion</option>
+                </select>
+            </div>
+            <!-- Other form fields for patient details here, if necessary -->
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+        <div class="patient-details">
+            <h4>Patient Details</h4>
+            <ul>
+                <li>Patient Name: John Doe</li>
+                <li>Patient ID: 123456789</li>
+                <li>Age and Gender: 45 years old, Male</li>
+                <!-- Add more patient details here -->
+            </ul>
+        </div>       
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

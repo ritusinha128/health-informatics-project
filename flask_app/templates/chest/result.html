@@ -1,0 +1,155 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <p>{{ prediction }}</p>
+    <a href="/chest">Upload another image</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .result-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .result-header {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .result-text {
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+        .diagnosis-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .info-container {
+            display: flex;
+            justify-content: space-around; /* Distribute space evenly */
+            margin-bottom: 20px;
+        }
+        .info-box {
+            flex: 1; /* Allows boxes to grow and take up equal space */
+            padding: 10px;
+            margin: 0 10px; /* Add some space between the boxes */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .result-button {
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            margin: 5px; /* Small margin between buttons */
+        }
+        .result-button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <div class="result-header">Prediction Result: Chest X-Ray</div>
+        <div class="result-text"> <h3> {{ prediction }} </h3> </div>
+
+        <div class="info-container">
+        <div class="info-box">            
+            <h4> Patient Details </h4>
+            <ul>
+                <li>Patient Name: John Doe</li>
+                <li>Patient ID: 123456789</li>
+                <li>Age and Gender: 45 years old, Male</li>
+                <!-- Add more patient details here -->
+            </ul>
+        </div>
+
+        <!-- Conditional display if the diagnosis is COVID-19 -->
+        {% if prediction == 'COVID-19' %}
+            <div class="info-box"> <h4> Additional Diagnosis </h4>
+                <li><strong>Coinfection:</strong> Testing for other pathogens in cases of severe COVID-19 or unexpected treatment responses.</li>
+                <li><strong>Complications:</strong> Monitoring for signs of complications such as pneumonia, ARDS, cardiovascular issues, and MIS-C.</li>
+                <li><strong>Underlying Health Conditions:</strong> Early identification and management of conditions that increase the severity of COVID-19.</li>
+                <li><strong>Mental Health:</strong> Assessment and support for psychological impacts including stress, anxiety, and depression.</li>
+                <li><strong>Long COVID:</strong> Awareness and management of long-term symptoms post-infection.</li>           
+            </div>
+            <div class="info-box"> <h4> Precautions </h4> 
+                <li><strong>Vaccination:</strong> Encouragement of COVID-19 vaccination and booster doses.</li>
+                <li><strong>Mask-Wearing:</strong> Mask use in crowded indoor settings, especially for high-risk individuals.</li>
+                <li><strong>Physical Distancing and Hygiene:</strong> Maintenance of distancing, hand hygiene, and respiratory etiquette.</li>
+                <li><strong>Quarantine and Isolation:</strong> Following guidelines to prevent virus spread after exposure or diagnosis.</li>
+                <li><strong>Monitoring Symptoms:</strong> Vigilance for COVID-19 symptoms and seeking prompt testing and advice.</li>
+                <li><strong>Air Quality and Ventilation:</strong> Enhancing indoor air quality through ventilation and air purification.</li>
+            </div>
+        {% endif %}
+
+        {% if prediction == 'Normal' %}
+        <div class="info-box">Additional Diagnosis 
+            Nothing required. 
+        </div>
+        <div class="info-box">Precautions: 
+            Nothing required.
+        </div>
+        {% endif %}
+
+        {% if prediction == 'Pneumonia-Bacterial Infection' %}
+        <div class="info-box"> <h4> Additional Diagnosis </h4>
+            <ul>
+                <li><strong>Diagnostic Tests:</strong> Chest X-rays, blood tests, and sputum cultures to identify the bacteria causing the infection.</li>
+                <li><strong>Severity Assessment:</strong> Evaluating the patient's oxygen levels, respiratory rate, and other vital signs to assess the pneumonia's severity.</li>
+                <li><strong>Risk Factors:</strong> Identifying underlying health conditions like chronic lung diseases, immune system issues, or recent surgeries that increase the risk of severe infection.</li>
+                <li><strong>Associated Conditions:</strong> Monitoring for potential complications such as pleural effusion, lung abscesses, and sepsis.</li>
+            </ul>
+            </div>
+            <div class="info-box"> <h4> Precautions </h4> 
+                <ul>
+                    <li><strong>Vaccination:</strong> Vaccines are available for some types of bacteria that cause pneumonia, such as Streptococcus pneumoniae.</li>
+                    <li><strong>Hygiene Practices:</strong> Regular handwashing and respiratory hygiene to prevent the spread of bacteria.</li>
+                    <li><strong>Healthy Lifestyle:</strong> Maintaining a healthy lifestyle to boost the immune system, including proper nutrition, regular exercise, and adequate sleep.</li>
+                    <li><strong>Smoking Cessation:</strong> Avoiding smoking, as it significantly increases the risk of developing pneumonia.</li>
+                    <li><strong>Avoiding Sick Contacts:</strong> Limiting contact with people who are sick to reduce the risk of bacterial transmission.</li>
+                    <li><strong>Timely Medical Attention:</strong> Seeking immediate medical care if symptoms of pneumonia, such as high fever, chest pain, and productive cough, are present.</li>
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+        <button onclick="window.location.href='/'" class="result-button">Home</button>
+        <button onclick="window.location.href='/chest'" class="result-button">Upload another image</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

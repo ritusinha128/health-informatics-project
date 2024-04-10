@@ -1,0 +1,140 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <p>{{ prediction }}</p>
+    <a href="/chest">Upload another image</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .result-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .result-header {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .result-text {
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+        .diagnosis-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .info-container {
+            display: flex;
+            justify-content: space-around; /* Distribute space evenly */
+            margin-bottom: 20px;
+        }
+        .info-box {
+            flex: 1; /* Allows boxes to grow and take up equal space */
+            padding: 10px;
+            margin: 0 10px; /* Add some space between the boxes */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .result-button {
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            margin: 5px; /* Small margin between buttons */
+        }
+        .result-button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <div class="result-header">Prediction Result: Skin Lesion</div>
+        <div class="result-text"> <h3> {{ prediction }} </h3> </div>
+
+        <div class="info-container">
+        <div class="info-box">            
+            <h4> Patient Details </h4>
+            <ul>
+                <li>Patient Name: John Doe</li>
+                <li>Patient ID: 123456789</li>
+                <li>Age and Gender: 45 years old, Male</li>
+                <!-- Add more patient details here -->
+            </ul>
+        </div>
+
+        <!-- Conditional display if the diagnosis is COVID-19 -->
+        {% if prediction == 'Malignant Skin Cancer' %}
+            <div class="info-box"> <h4> Additional Diagnosis </h4>
+                <li><strong>Biopsy:</strong> A biopsy is often necessary to diagnose skin cancer definitively. This involves removing a sample of the skin for closer examination under a microscope.</li>
+                <li><strong>Skin Examinations:</strong> Regular skin exams by a healthcare professional can help detect skin cancer early when it's most treatable.</li>
+                <li><strong>Dermoscopy:</strong> A dermoscopy allows dermatologists to observe the skin more clearly by eliminating surface reflection. This can help in distinguishing between benign and malignant lesions.</li>
+                <li><strong>Molecular Testing:</strong> In some cases, especially for melanoma, molecular testing might be performed to identify specific genes, proteins, and other factors unique to the tumor.</li>
+             </div>
+            <div class="info-box"> <h4> Precautions </h4> 
+                <li><strong>Sun Protection:</strong> Protecting skin from the sun’s ultraviolet (UV) rays by seeking shade, wearing protective clothing, and applying broad-spectrum sunscreen can significantly reduce skin cancer risk.</li>
+                <li><strong>Avoiding Tanning Beds:</strong> Tanning beds and lamps are also sources of UV radiation and can increase the risk of skin cancer.</li>
+                <li><strong>Regular Skin Checks:</strong> Conducting regular self-examinations of your skin for new moles or changes to existing moles can help detect skin cancer early.</li>
+                <li><strong>Educational Awareness:</strong> Educating yourself and others about the risk factors and signs of skin cancer is crucial for early detection and prevention.</li>
+                <li><strong>Professional Screenings:</strong> Regular dermatological check-ups, especially for individuals with a high risk of skin cancer, can aid in early detection and treatment.</li>
+            </div>
+        {% endif %}
+
+        {% if prediction == 'Benign Skin Cancer' %}
+        <div class="info-box"> <h4> Additional Diagnosis </h4>
+            <li><strong>Visual Examination:</strong> Many benign skin growths can be diagnosed through a visual examination by a healthcare professional. Characteristics such as color, size, and shape are considered.</li>
+            <li><strong>Dermoscopic Examination:</strong> Dermoscopy can provide a more detailed view of the skin's surface, helping to differentiate between benign and malignant growths.</li>
+            <li><strong>Skin Biopsy:</strong> For growths that are difficult to diagnose visually, a biopsy may be performed. This involves taking a small sample of the growth for laboratory analysis.</li>
+            <li><strong>Monitoring Changes:</strong> Keeping track of any changes in the size, color, or shape of growths is crucial. Significant changes may warrant further examination.</li>
+        </div>
+        <div class="info-box"> <h4> Precautions </h4>  
+            <li><strong>Sun Protection:</strong> Protecting the skin from excessive sun exposure can prevent the development of new growths and stop existing growths from worsening.</li>
+            <li><strong>Regular Skin Checks:</strong> Performing regular self-examinations can help in the early detection of any new growths or changes to existing ones.</li>
+            <li><strong>Avoiding Self-Removal:</strong> Attempting to remove growths without professional assistance can lead to infection or scarring. Always consult a healthcare professional.</li>
+            <li><strong>Consultation for Cosmetic Concerns:</strong> If a benign growth is bothersome for cosmetic reasons, professional removal options are available.</li>
+
+        </div>
+        {% endif %}
+
+    </div>
+
+        <button onclick="window.location.href='/'" class="result-button">Home</button>
+        <button onclick="window.location.href='/skin'" class="result-button">Upload another image</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
