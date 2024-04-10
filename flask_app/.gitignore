@@ -2,3 +2,4 @@
 *.tflite
 *.h5
 env1/
+__pycache__/
